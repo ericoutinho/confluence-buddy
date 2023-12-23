@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "version": "1.0.1",
+    "name": "Confluence Buddy",
+    "description": "Extensão para Confluence",
+    "author": "Eric Coutinho",
+    "permissions": ["contextMenus", "storage", "management"],
+    "options_page": "options.html",
+    "action": {
+        "default_title": "Confluence Buddy",
+        "default_popup": "popup.html",
+        "options": "options.html",
+        "default_icon": "images/icon-bolt.png"
+    },
+    "icons": {
+        "16": "images/icon-bolt.png",
+        "128": "images/icon-bolt.png",
+        "256": "images/icon-bolt.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}

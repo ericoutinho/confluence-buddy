@@ -1,0 +1,36 @@
+body {
+    background-color: var(--color-bg-fst);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+main {
+    padding: 1rem 1.75rem;
+    border: 1px solid #ddd;
+    background-color: var(--color-bg-snd);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: min(100%, 700px);
+}
+
+header {
+    text-align: center;
+    color: var(--color-text-snd);
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+footer {
+    padding-block: 1rem .5rem;
+    text-align: center;
+    font-size: .80rem;
+}
