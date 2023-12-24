@@ -3,6 +3,7 @@
 :root {
     --color-text: #444;
     --color-text-snd: #999;
+    --color-text-error: #bf3131;
     --color-bg-fst: #8eabe6;
     --color-bg-snd: #f1f1ff;
     --border-radius: 5px;
@@ -10,6 +11,7 @@
     --color-btn-fst-lgt: #9ebeff;
     --color-btn-snd: #265073;
     --font-size: 16px;
+
 }
 
 *,
@@ -41,7 +43,7 @@ body {
 .cb-form-group {
     display: flex;
     flex-direction: column;
-    gap: .35rem;
+    gap: .45rem;
 }
 
 .cb-form-group :is(label, small) {
@@ -66,6 +68,10 @@ body {
     font-family: "Noto Sans", sans-serif;
 }
 
+.cb-form-group.error .cb-form-text {
+    outline: 3px solid rgba(191,49,49, 0.35);
+}
+
 .cb-form-text:focus {
     outline: 2px solid var(--color-btn-fst-lgt) ;
 }
@@ -73,6 +79,17 @@ body {
 .cb-form-text::placeholder {
     color: #AAA;
 }
+
+
+.cb-text-info {
+    display: none;
+}
+
+.cb-form-group.error .cb-text-info {
+    color: var(--color-text-error);
+    display: block;
+}
+
 
 .cb-button {
     display: inline-block;
@@ -91,7 +108,7 @@ body {
 
 .cb-button:hover {
     cursor: pointer;
-    filter: brightness(1.05);
+    filter: brightness(1.07);
 }
 
 .cb-button.cb-button-active {

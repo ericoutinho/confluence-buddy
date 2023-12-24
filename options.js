@@ -1,6 +1,7 @@
-let saveButton = document.querySelector("#js-save-button");
-let cancelButton = document.querySelector("#js-cancel-button");
-let formOptions = document.querySelector("#js-options-form");
+const saveButton = document.querySelector("#js-save-button");
+const cancelButton = document.querySelector("#js-cancel-button");
+const formOptions = document.querySelector("#js-options-form");
+const backdrop = document.querySelector(".cb-backdrop");
 let baseUrl;
 
 // Rescue stored value
@@ -12,23 +13,38 @@ chrome.storage.local.get(["cbBaseUrl"]).then((result) => {
 
 saveButton.addEventListener("click", (event) => {
     event.preventDefault();
+
+    document.querySelectorAll(".error").forEach( (element) => {
+        element.classList.remove("error");
+    })
+
     var urlBase = formOptions.cbUrlBase.value;
+
     if (isUrl(urlBase)) {
         chrome.storage.local.set({ "cbBaseUrl": urlBase });
+        backdrop.classList.add("js-show");
     }
     else {
-        document.querySelector(".js-text-info").innerHTML = "É necessário informar uma URL válida.";
+        formOptions.cbUrlBase.parentElement.classList.add("error");
     }
 });
 
-cancelButton.addEventListener("click", (event) => {
+cancelButton.addEventListener("click", async (event) => {
     event.preventDefault();
-    chrome.tabs.remove();
+    let [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+    chrome.tabs.remove(tab.id);
 })
 
 const isUrl = (url) => {
     return url.match(/^(https?:\/\/)(www\.)?([\.\da-z]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?&#]{1}[\da-z\.]+)*[\/\?]?$/gi);
 }
+
+const closeToast = document.querySelectorAll(".close-toast");
+closeToast.forEach((element, index) => {
+    element.addEventListener("click", (event) => {
+        backdrop.classList.remove("js-show");
+    });
+});
 
 chrome.management.getSelf()
     .then( (result) => {
